@@ -121,11 +121,13 @@ nav {
   height: 68px;
 }
 .nav-logo img {
-  height: 46px;
+  height: 50px;
   width: auto;
-  border-radius: 6px;
+  border-radius: 8px;
   background: white;
-  padding: 3px 8px;
+  padding: 4px 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  border: 2px solid var(--gold);
 }
 .nav-links {
   display: flex;
@@ -594,11 +596,12 @@ footer {
   text-align: center;
 }
 .footer-logo img {
-  height: 64px;
-  border-radius: 8px;
+  height: 72px;
+  border-radius: 10px;
   background: white;
-  padding: 4px 10px;
-  margin-bottom: 18px;
+  padding: 6px 14px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
 }
 footer p { font-size: 0.92rem; margin-bottom: 8px; }
 footer a { color: var(--gold); text-decoration: none; font-weight: 700; }
