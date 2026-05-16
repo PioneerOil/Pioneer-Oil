@@ -1,0 +1,9 @@
+{
+  "_note": "Update applicant statuses here. Valid status values: pending, reviewing, interview, not-found. Do not include personal information in this file.",
+  "_example": {
+    "APP-2026-TECH-0000": {
+      "status": "reviewing",
+      "message": "Your application is being reviewed by our team. We will reach out soon."
+    }
+  }
+}

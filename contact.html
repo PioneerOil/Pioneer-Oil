@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Schedule a Pioneer Oil mobile oil change. We come to you.">
+  <title>Schedule – Pioneer Oil</title>
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <nav>
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.png" alt="Pioneer Oil">
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="contact.html" class="active nav-cta">Schedule Now</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <div class="container">
+      <span class="section-tag">Get Started</span>
+      <h1>Schedule Your Oil Change</h1>
+      <p>Send us your info and we will reach out to confirm a time. Usually within a few hours.</p>
+    </div>
+  </header>
+
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- Left info -->
+        <div class="contact-info">
+          <span class="section-tag">What to Expect</span>
+          <h2>Simple from Start to Finish</h2>
+          <p>No shop, no waiting room, no upsells. Submit your info, we confirm a time that works, and our tech shows up ready to go.</p>
+
+          <div class="info-item">
+            <div class="info-icon">📋</div>
+            <div class="info-text">
+              <strong>Just-in-Time Ordering</strong>
+              We order your oil and filter after you schedule, so everything is fresh and ready for your appointment.
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">💬</div>
+            <div class="info-text">
+              <strong>We Confirm With You</strong>
+              After you submit, we reach out to lock in your time and confirm the exact price before anything is ordered.
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div class="info-text">
+              <strong>We Come to You</strong>
+              Apartment lot, campus parking, work. Wherever is most convenient.
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">💰</div>
+            <div class="info-text">
+              <strong>No Surprises</strong>
+              We confirm your final price before we start. Pricing starts at what you see on the <a href="pricing.html">pricing page</a>.
+            </div>
+          </div>
+        </div>
+
+        <!-- Right form -->
+        <div class="contact-form">
+
+          <div data-fs-success class="fs-success" style="display:none">
+            Your request has been sent. We will reach out shortly to confirm your appointment and final price. Keep your service number handy.
+          </div>
+          <div data-fs-error class="fs-form-error" style="display:none"></div>
+
+          <form id="schedule-form">
+
+            <!-- Service reference number -->
+            <div class="service-ref-box">
+              <div>
+                <div class="ref-label">Your Service Reference</div>
+                <div class="ref-number" id="service-ref-display">Generating...</div>
+                <div class="ref-note">Save this number to track your request.</div>
+              </div>
+            </div>
+            <input type="hidden" name="service_reference" id="service-ref-hidden">
+            <input type="hidden" name="_subject" value="New Oil Change Request - Pioneer Oil">
+
+            <!-- Your Name -->
+            <div class="form-group">
+              <label for="full-name">Your Name <span style="color:var(--gold)">*</span></label>
+              <input type="text" id="full-name" name="name" required placeholder="Jane Smith" data-fs-field>
+              <span class="fs-field-error" data-fs-error="name"></span>
+            </div>
+
+            <!-- Best way to reach you -->
+            <div class="form-group">
+              <label>Best way to reach you <span style="color:var(--gold)">*</span></label>
+              <div class="contact-method-toggle">
+                <button type="button" class="ctoggle active" data-method="email">Email</button>
+                <button type="button" class="ctoggle" data-method="sms">Phone / SMS</button>
+              </div>
+              <div id="contact-email-group">
+                <input type="email" id="contact-email" name="email" required placeholder="jane@email.com" data-fs-field>
+                <span class="fs-field-error" data-fs-error="email"></span>
+              </div>
+              <div id="contact-phone-group" style="display:none">
+                <input type="tel" id="contact-phone" name="phone" placeholder="(208) 555-0100" data-fs-field>
+                <span class="fs-field-error" data-fs-error="phone"></span>
+              </div>
+            </div>
+
+            <!-- Optional second contact -->
+            <div class="form-group">
+              <label class="second-contact-label">
+                <input type="checkbox" id="add-second"> Add a backup contact method (optional)
+              </label>
+              <div id="second-contact-group" style="display:none">
+                <input type="text" name="backup_contact" placeholder="Backup email or phone number">
+              </div>
+            </div>
+
+            <!-- Vehicle -->
+            <div class="form-group">
+              <label>Your Vehicle <span style="color:var(--gold)">*</span></label>
+              <div class="vehicle-tabs">
+                <button type="button" class="vtab active" id="tab-vin">Look Up by VIN</button>
+                <button type="button" class="vtab" id="tab-manual">Enter Manually</button>
+              </div>
+
+              <!-- VIN panel -->
+              <div id="panel-vin">
+                <div class="vin-row">
+                  <input type="text" id="vin-input" placeholder="17-character VIN (e.g. 1HGBH41JXMN109186)" maxlength="17" style="text-transform:uppercase">
+                  <button type="button" class="vin-btn" id="vin-lookup-btn">Look Up</button>
+                </div>
+                <div id="vin-feedback"></div>
+              </div>
+
+              <!-- Manual panel -->
+              <div id="panel-manual" style="display:none">
+                <div class="form-row" style="margin-top:0">
+                  <div class="form-group" style="margin-bottom:0">
+                    <input type="number" id="man-year" placeholder="Year (e.g. 2018)" min="1980" max="2030">
+                  </div>
+                  <div class="form-group" style="margin-bottom:0">
+                    <input type="text" id="man-make" placeholder="Make (e.g. Toyota)">
+                  </div>
+                </div>
+                <div class="form-group" style="margin-top:12px;margin-bottom:0">
+                  <input type="text" id="man-model" placeholder="Model (e.g. Camry)">
+                </div>
+              </div>
+
+              <!-- Hidden fields that capture the resolved vehicle info -->
+              <input type="hidden" name="vehicle_year"  id="veh-year-hidden">
+              <input type="hidden" name="vehicle_make"  id="veh-make-hidden">
+              <input type="hidden" name="vehicle_model" id="veh-model-hidden">
+            </div>
+
+            <!-- Mileage -->
+            <div class="form-group">
+              <label for="mileage">Current Mileage <span style="color:var(--muted);font-weight:400;font-size:0.85rem">(optional)</span></label>
+              <input type="number" id="mileage" name="mileage" placeholder="e.g. 85000" min="0">
+            </div>
+
+            <!-- Service tier -->
+            <div class="form-group">
+              <label for="tier">Service Tier <span style="color:var(--gold)">*</span></label>
+              <select id="tier" name="service_tier" required data-fs-field>
+                <option value="">Select a tier</option>
+                <option value="Trail">Trail — From $40.95 (Castrol GTX)</option>
+                <option value="Frontier">Frontier — From $50.50 (Valvoline MaxLife)</option>
+                <option value="Summit">Summit — From $67.96 (Mobil 1 Synthetic)</option>
+                <option value="Skookum">Skookum — From $108.25 (AmsOil Signature)</option>
+                <option value="Not Sure">Not sure, help me choose</option>
+              </select>
+              <span class="fs-field-error" data-fs-error="service_tier"></span>
+            </div>
+
+            <!-- Location -->
+            <div class="form-group">
+              <label for="location">Where Should We Come? <span style="color:var(--gold)">*</span></label>
+              <input type="text" id="location" name="service_location" required placeholder="123 University Ave, Apt 4, Rexburg ID" data-fs-field>
+              <span class="fs-field-error" data-fs-error="service_location"></span>
+            </div>
+
+            <!-- Availability -->
+            <div class="form-group">
+              <label for="availability">Your General Availability <span style="color:var(--gold)">*</span></label>
+              <div class="availability-note">
+                <strong>Real-time scheduling is coming soon.</strong> For now, tell us generally when you are free and we will reach out to confirm a specific time that works for both of us.
+              </div>
+              <textarea id="availability" name="availability" required placeholder="e.g. Weekday mornings work well, or Saturday afternoons. I am generally free after 3pm on weekdays." data-fs-field></textarea>
+              <span class="fs-field-error" data-fs-error="availability"></span>
+            </div>
+
+            <!-- Notes -->
+            <div class="form-group">
+              <label for="notes">Anything Else We Should Know? <span style="color:var(--muted);font-weight:400;font-size:0.85rem">(optional)</span></label>
+              <textarea id="notes" name="notes" placeholder="Specific oil viscosity, tricky parking, questions about which tier to choose, etc."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary form-submit" data-fs-submit-btn>
+              Submit Scheduling Request
+            </button>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-logo">
+        <img src="assets/logo.png" alt="Pioneer Oil">
+      </div>
+      <p>Pioneer Oil · Mobile Oil Change Service</p>
+      <nav class="footer-nav">
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="careers.html">Careers</a>
+      </nav>
+      <p class="footer-copy">&copy; 2025 Pioneer Oil. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // ── Nav ─────────────────────────────────────────────────
+    document.getElementById('navToggle').addEventListener('click', () =>
+      document.getElementById('navLinks').classList.toggle('open')
+    );
+
+    // ── Service reference number ─────────────────────────────
+    function genRef() {
+      const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+      let r = 'PO-';
+      for (let i = 0; i < 8; i++) r += chars[Math.floor(Math.random() * chars.length)];
+      return r;
+    }
+    const ref = genRef();
+    document.getElementById('service-ref-display').textContent = ref;
+    document.getElementById('service-ref-hidden').value = ref;
+
+    // ── Pre-select tier from URL param (?tier=Summit) ────────
+    const tierParam = new URLSearchParams(window.location.search).get('tier');
+    if (tierParam) {
+      const sel = document.getElementById('tier');
+      for (const opt of sel.options) {
+        if (opt.value === tierParam) { opt.selected = true; break; }
+      }
+    }
+
+    // ── Contact method toggle ────────────────────────────────
+    document.querySelectorAll('.ctoggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.ctoggle').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const m = btn.dataset.method;
+        const emailGrp = document.getElementById('contact-email-group');
+        const phoneGrp = document.getElementById('contact-phone-group');
+        const emailInput = document.getElementById('contact-email');
+        const phoneInput = document.getElementById('contact-phone');
+        if (m === 'email') {
+          emailGrp.style.display = ''; phoneGrp.style.display = 'none';
+          emailInput.required = true; phoneInput.required = false; phoneInput.value = '';
+        } else {
+          emailGrp.style.display = 'none'; phoneGrp.style.display = '';
+          phoneInput.required = true; emailInput.required = false; emailInput.value = '';
+        }
+      });
+    });
+
+    // ── Second contact toggle ────────────────────────────────
+    document.getElementById('add-second').addEventListener('change', function () {
+      document.getElementById('second-contact-group').style.display = this.checked ? '' : 'none';
+    });
+
+    // ── Vehicle tabs ─────────────────────────────────────────
+    document.getElementById('tab-vin').addEventListener('click', () => {
+      document.getElementById('tab-vin').classList.add('active');
+      document.getElementById('tab-manual').classList.remove('active');
+      document.getElementById('panel-vin').style.display = '';
+      document.getElementById('panel-manual').style.display = 'none';
+    });
+    document.getElementById('tab-manual').addEventListener('click', () => {
+      document.getElementById('tab-manual').classList.add('active');
+      document.getElementById('tab-vin').classList.remove('active');
+      document.getElementById('panel-manual').style.display = '';
+      document.getElementById('panel-vin').style.display = 'none';
+    });
+
+    // ── VIN lookup (NHTSA free API, no key required) ─────────
+    document.getElementById('vin-lookup-btn').addEventListener('click', async () => {
+      const vin = document.getElementById('vin-input').value.trim().toUpperCase();
+      const feedback = document.getElementById('vin-feedback');
+      const btn = document.getElementById('vin-lookup-btn');
+
+      if (vin.length !== 17) {
+        feedback.innerHTML = '<div class="vin-feedback error">A VIN must be exactly 17 characters.</div>';
+        return;
+      }
+
+      btn.textContent = 'Looking up...';
+      btn.disabled = true;
+      feedback.innerHTML = '';
+
+      try {
+        const res = await fetch(
+          `https://vpic.nhtsa.dot.gov/api/vehicles/decodevinvalues/${vin}?format=json`
+        );
+        const data = await res.json();
+        const r = data.Results[0];
+        const year = r.ModelYear;
+        const make = r.Make ? r.Make.charAt(0) + r.Make.slice(1).toLowerCase() : '';
+        const model = r.Model ? r.Model.charAt(0) + r.Model.slice(1).toLowerCase() : '';
+
+        if (!year || !make) {
+          throw new Error('Not found');
+        }
+
+        document.getElementById('veh-year-hidden').value = year;
+        document.getElementById('veh-make-hidden').value = make;
+        document.getElementById('veh-model-hidden').value = model;
+
+        feedback.innerHTML = `<div class="vin-feedback success">Found: ${year} ${make} ${model}</div>`;
+      } catch {
+        feedback.innerHTML = '<div class="vin-feedback error">Could not find that VIN. Try entering your vehicle manually instead.</div>';
+        document.getElementById('tab-manual').click();
+      } finally {
+        btn.textContent = 'Look Up';
+        btn.disabled = false;
+      }
+    });
+
+    // ── Sync manual fields to hidden fields ──────────────────
+    ['man-year', 'man-make', 'man-model'].forEach(id => {
+      document.getElementById(id).addEventListener('input', () => {
+        document.getElementById('veh-year-hidden').value  = document.getElementById('man-year').value;
+        document.getElementById('veh-make-hidden').value  = document.getElementById('man-make').value;
+        document.getElementById('veh-model-hidden').value = document.getElementById('man-model').value;
+      });
+    });
+
+    // ── Formspree AJAX (manual, since we have custom logic) ──
+    const form   = document.getElementById('schedule-form');
+    const btnSub = form.querySelector('[data-fs-submit-btn]');
+    const fsSucc = document.querySelector('[data-fs-success]');
+    const fsErr  = document.querySelector('[data-fs-error]');
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      btnSub.textContent = 'Sending...';
+      btnSub.disabled = true;
+
+      try {
+        const res = await fetch('https://formspree.io/f/mbdwnykg', {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' }
+        });
+        if (res.ok) {
+          fsSucc.style.display = '';
+          form.style.display = 'none';
+        } else { throw new Error(); }
+      } catch {
+        fsErr.textContent = 'Something went wrong. Please try again.';
+        fsErr.style.display = '';
+        btnSub.textContent = 'Submit Scheduling Request';
+        btnSub.disabled = false;
+      }
+    });
+  </script>
+
+</body>
+</html>
