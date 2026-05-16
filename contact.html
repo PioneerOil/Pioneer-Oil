@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Schedule a Pioneer Oil mobile oil change. We come to you — fill out the form and we'll confirm your appointment.">
+  <title>Schedule – Pioneer Oil</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav>
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="Assets/logo.png" alt="Pioneer Oil">
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="contact.html" class="active nav-cta">Schedule Now</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── Page Header ── -->
+  <header class="page-header">
+    <div class="container">
+      <span class="section-tag">Get Started</span>
+      <h1>Schedule Your Oil Change</h1>
+      <p>Send us your details and we'll reach out to confirm your appointment — usually within a few hours.</p>
+    </div>
+  </header>
+
+  <!-- ── Contact Section ── -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- Left: Info -->
+        <div class="contact-info">
+          <span class="section-tag">What to Expect</span>
+          <h2>Simple from Start to Finish</h2>
+          <p>There's no shop, no waiting room, and no upsells. Submit your info, we'll confirm a time that works, and our tech will show up ready to go.</p>
+
+          <div class="info-item">
+            <div class="info-icon">📋</div>
+            <div class="info-text">
+              <strong>Just-in-Time Ordering</strong>
+              We order your oil and filter after you schedule, so everything is fresh and ready for your appointment.
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">💬</div>
+            <div class="info-text">
+              <strong>We'll Confirm With You</strong>
+              After you submit, we'll reach out to lock in your time and confirm the exact price.
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div class="info-text">
+              <strong>We Come to You</strong>
+              Apartment lot, campus parking, work — wherever is most convenient for you.
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">💰</div>
+            <div class="info-text">
+              <strong>No Surprises</strong>
+              We always confirm your final price before starting. Pricing starts at what you see on the <a href="pricing.html">pricing page</a>.
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="contact-form">
+          <div data-fs-success class="fs-success" style="display:none">
+            ✅ Request received! We'll reach out soon to confirm your appointment and final price.
+          </div>
+          <div data-fs-error class="fs-form-error" style="display:none"></div>
+          <form id="schedule-form">
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="first-name">First Name <span style="color:var(--gold)">*</span></label>
+                <input type="text" id="first-name" name="first_name" required placeholder="Jane" data-fs-field>
+                <span class="fs-field-error" data-fs-error="first_name"></span>
+              </div>
+              <div class="form-group">
+                <label for="last-name">Last Name <span style="color:var(--gold)">*</span></label>
+                <input type="text" id="last-name" name="last_name" required placeholder="Smith" data-fs-field>
+                <span class="fs-field-error" data-fs-error="last_name"></span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Email <span style="color:var(--gold)">*</span></label>
+                <input type="email" id="email" name="email" required placeholder="jane@email.com" data-fs-field>
+                <span class="fs-field-error" data-fs-error="email"></span>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number <span style="color:var(--gold)">*</span></label>
+                <input type="tel" id="phone" name="phone" required placeholder="(208) 555-0100" data-fs-field>
+                <span class="fs-field-error" data-fs-error="phone"></span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="veh-year">Vehicle Year <span style="color:var(--gold)">*</span></label>
+                <input type="number" id="veh-year" name="vehicle_year" required placeholder="2018" min="1980" max="2026" data-fs-field>
+                <span class="fs-field-error" data-fs-error="vehicle_year"></span>
+              </div>
+              <div class="form-group">
+                <label for="veh-make">Make <span style="color:var(--gold)">*</span></label>
+                <input type="text" id="veh-make" name="vehicle_make" required placeholder="Toyota" data-fs-field>
+                <span class="fs-field-error" data-fs-error="vehicle_make"></span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="veh-model">Model <span style="color:var(--gold)">*</span></label>
+                <input type="text" id="veh-model" name="vehicle_model" required placeholder="Camry" data-fs-field>
+                <span class="fs-field-error" data-fs-error="vehicle_model"></span>
+              </div>
+              <div class="form-group">
+                <label for="mileage">Current Mileage</label>
+                <input type="number" id="mileage" name="mileage" placeholder="85000" min="0" data-fs-field>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="tier">Service Tier <span style="color:var(--gold)">*</span></label>
+              <select id="tier" name="service_tier" required data-fs-field>
+                <option value="">— Select a tier —</option>
+                <option value="Trail">Trail — From $40.95 (Castrol GTX)</option>
+                <option value="Frontier">Frontier — From $50.50 (Valvoline MaxLife)</option>
+                <option value="Summit">Summit — From $67.96 (Mobil 1 Synthetic)</option>
+                <option value="Skookum">Skookum — From $108.25 (AmsOil Signature)</option>
+                <option value="Not Sure">Not sure — help me choose</option>
+              </select>
+              <span class="fs-field-error" data-fs-error="service_tier"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="location">Your Location / Address <span style="color:var(--gold)">*</span></label>
+              <input type="text" id="location" name="service_location" required placeholder="123 University Ave, Apt 4, Rexburg ID 83440" data-fs-field>
+              <span class="fs-field-error" data-fs-error="service_location"></span>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="pref-date">Preferred Date <span style="color:var(--gold)">*</span></label>
+                <input type="date" id="pref-date" name="preferred_date" required data-fs-field>
+                <span class="fs-field-error" data-fs-error="preferred_date"></span>
+              </div>
+              <div class="form-group">
+                <label for="pref-time">Preferred Time Window <span style="color:var(--gold)">*</span></label>
+                <select id="pref-time" name="preferred_time" required data-fs-field>
+                  <option value="">— Select —</option>
+                  <option value="Morning (8am–12pm)">Morning (8am–12pm)</option>
+                  <option value="Afternoon (12pm–5pm)">Afternoon (12pm–5pm)</option>
+                  <option value="Evening (5pm–8pm)">Evening (5pm–8pm)</option>
+                  <option value="Flexible">Flexible — any time works</option>
+                </select>
+                <span class="fs-field-error" data-fs-error="preferred_time"></span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="notes">Additional Notes</label>
+              <textarea id="notes" name="notes" placeholder="Anything we should know? Specific oil viscosity required, tight parking access, a second preferred date, etc." data-fs-field></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary form-submit" data-fs-submit-btn>
+              Submit Scheduling Request
+            </button>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <div class="container">
+      <div class="footer-logo">
+        <img src="Assets/logo.png" alt="Pioneer Oil">
+      </div>
+      <p>Pioneer Oil · Mobile Oil Change Service</p>
+      <nav class="footer-nav">
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="mailto:jobs@pioneeroil.com">Careers</a>
+      </nav>
+      <p class="footer-copy">&copy; 2025 Pioneer Oil. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // ── Nav toggle ──────────────────────────────────────────
+    const toggle = document.getElementById('navToggle');
+    const links  = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+
+    // ── Pre-select tier from URL param (?tier=Summit) ───────
+    const params = new URLSearchParams(window.location.search);
+    const tierParam = params.get('tier');
+    if (tierParam) {
+      const sel = document.getElementById('tier');
+      for (const opt of sel.options) {
+        if (opt.value === tierParam) { opt.selected = true; break; }
+      }
+    }
+
+    // ── Set minimum date to today ───────────────────────────
+    document.getElementById('pref-date')
+      .setAttribute('min', new Date().toISOString().split('T')[0]);
+
+    // ── Formspree SDK init ──────────────────────────────────
+    window.formspree = window.formspree || function () {
+      (formspree.q = formspree.q || []).push(arguments);
+    };
+    formspree('initForm', { formElement: '#schedule-form', formId: 'mbdwnykg' });
+  </script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+</body>
+</html>
