@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pioneer Oil pricing — transparent starting prices for every service we offer.">
+  <meta property="og:title" content="Pricing – Pioneer Oil">
+  <meta property="og:description" content="Transparent pricing for every Pioneer Oil service. No surprises, ever.">
+  <meta property="og:image" content="https://pioneeroil.github.io/Pioneer-Oil/assets/logo_bg.png">
+  <meta property="og:url" content="https://pioneeroil.github.io/Pioneer-Oil/pricing.html">
+  <meta property="og:type" content="website">
+  <title>Pricing – Pioneer Oil</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <nav>
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo_bg.png" alt="Pioneer Oil">
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="pricing.html" class="active">Pricing</a></li>
+        <li><a href="deals.html">Deals</a></li>
+        <li><a href="contact.html" class="nav-cta">Schedule Now</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <div class="container">
+      <span class="section-tag">Transparent Pricing</span>
+      <h1>Our Pricing</h1>
+      <p>All prices are starting prices. We confirm the exact total before we ever begin.</p>
+    </div>
+  </header>
+
+  <section class="pricing-section">
+    <div class="container">
+
+      <div class="service-selector">
+        <div class="service-select-wrap">
+          <span class="service-select-label">Viewing:</span>
+          <select id="service-select">
+            <option value="oil">Oil Changes</option>
+            <option value="rotation">Tire Rotation</option>
+            <option value="air-filter">Engine Air Filter</option>
+            <option value="wipers">Wiper Blades</option>
+            <option value="battery">Battery Replacement</option>
+            <option value="fluids">Fluid Top-Offs</option>
+            <option value="inspection">Multi-Point Inspection</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- OIL CHANGES -->
+      <div id="section-oil" class="pricing-service-section">
+        <div class="pricing-grid">
+
+          <div class="tier-card">
+            <div class="tier-name">Trail Grade</div>
+            <div class="tier-price"><sup>$</sup>40.95<span style="font-size:1.1rem;font-weight:600;color:var(--muted)">+</span></div>
+            <div class="tier-price-note">Starting price &middot; standard 5 qt service</div>
+            <div class="tier-subtext">"I just need my car running well."</div>
+            <div class="tier-spec">
+              <div class="tier-label">Best For</div>
+              <div class="tier-value">Normal conditions, regular intervals, engines under 75k miles</div>
+            </div>
+            <div class="tier-spec">
+              <div class="tier-label">What It Does</div>
+              <div class="tier-value">Clean, dependable conventional protection for everyday driving. The right oil for a car that does its job without drama.</div>
+            </div>
+            <a href="contact.html?tier=Trail Grade" class="tier-cta">Schedule with Trail Grade</a>
+          </div>
+
+          <div class="tier-card featured">
+            <div class="tier-badge">Most Popular</div>
+            <div class="tier-name">Frontier Grade</div>
+            <div class="tier-price"><sup>$</sup>50.50<span style="font-size:1.1rem;font-weight:600;color:rgba(255,255,255,0.40)">+</span></div>
+            <div class="tier-price-note">Starting price &middot; high-mileage blend 5 qt</div>
+            <div class="tier-subtext">"I put a lot of miles on this thing."</div>
+            <div class="tier-spec">
+              <div class="tier-label">Best For</div>
+              <div class="tier-value">Vehicles over 75k miles, daily commuters, harder working engines</div>
+            </div>
+            <div class="tier-spec">
+              <div class="tier-label">What It Does</div>
+              <div class="tier-value">A high-mileage blend with seal conditioners and added wear protection for engines that have been around the block.</div>
+            </div>
+            <a href="contact.html?tier=Frontier Grade" class="tier-cta">Schedule with Frontier Grade</a>
+          </div>
+
+          <div class="tier-card">
+            <div class="tier-name">Summit Grade</div>
+            <div class="tier-price"><sup>$</sup>67.96<span style="font-size:1.1rem;font-weight:600;color:var(--muted)">+</span></div>
+            <div class="tier-price-note">Starting price &middot; full synthetic 5 qt</div>
+            <div class="tier-subtext">"I want to go longer between changes and not think about it."</div>
+            <div class="tier-spec">
+              <div class="tier-label">Best For</div>
+              <div class="tier-value">Newer engines, performance vehicles, extended interval drivers</div>
+            </div>
+            <div class="tier-spec">
+              <div class="tier-label">What It Does</div>
+              <div class="tier-value">Full synthetic formula built for temperature extremes and extended service intervals. Less maintenance, more confidence.</div>
+            </div>
+            <a href="contact.html?tier=Summit Grade" class="tier-cta">Schedule with Summit Grade</a>
+          </div>
+
+          <div class="tier-card">
+            <div class="tier-name">Pinnacle Grade</div>
+            <div class="tier-price"><sup>$</sup>112.07<span style="font-size:1.1rem;font-weight:600;color:var(--muted)">+</span></div>
+            <div class="tier-price-note">Starting price &middot; premium synthetic 5 qt</div>
+            <div class="tier-subtext">"This car isn't just a car to me."</div>
+            <div class="tier-spec">
+              <div class="tier-label">Best For</div>
+              <div class="tier-value">Long-term keepers, high-performance engines, drivers who want the absolute best</div>
+            </div>
+            <div class="tier-spec">
+              <div class="tier-label">What It Does</div>
+              <div class="tier-value">Maximum protection premium synthetic engineered for engines you intend to keep. The choice when you are thinking in decades, not months.</div>
+            </div>
+            <a href="contact.html?tier=Pinnacle Grade" class="tier-cta">Schedule with Pinnacle Grade</a>
+          </div>
+
+        </div>
+        <div class="pricing-disclaimer">
+          <strong>A note on pricing:</strong> All prices are starting prices based on a standard 5-quart service. Your total may be higher if your vehicle requires more than 5 quarts or uses a specialty viscosity. We will always confirm the exact price before we begin.
+        </div>
+      </div>
+
+      <!-- TIRE ROTATION -->
+      <div id="section-rotation" class="pricing-service-section" style="display:none">
+        <div class="pricing-grid single-service">
+          <div class="tier-card">
+            <div class="tier-name">Tire Rotation</div>
+            <div class="tier-price"><sup>$</sup>25</div>
+            <div class="tier-price-note">Flat rate &middot; no parts required</div>
+            <div class="tier-subtext">"Keep the wear even, keep the tires longer."</div>
+            <div class="tier-spec">
+              <div class="tier-label">Best For</div>
+              <div class="tier-value">Every vehicle, recommended at every oil change interval</div>
+            </div>
+            <div class="tier-spec">
+              <div class="tier-label">What It Does</div>
+              <div class="tier-value">Moves your tires to different positions to even out wear patterns, extending the life of your full set significantly.</div>
+            </div>
+            <a href="contact.html" class="tier-cta">Schedule a Rotation</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ENGINE AIR FILTER -->
+      <div id="section-air-filter" class="pricing-service-section" style="display:none">
+        <div class="pricing-grid">
+
+          <div class="tier-card">
+            <div class="tier-name">Trail</div>
+            <div class="tier-price"><sup>$</sup>22.50<span style="font-size:1.1rem;font-weight:600;color:var(--muted)">+</span></div>
+            <div class="tier-price-note">Parts + installation</div>
+            <div class="tier-subtext">"Clean air, solid protection, easy on the wallet."</div>
+            <div class="tier-spec">
+              <div class="tier-label">Best For</div>
+              <div class="tier-value">Standard replacement intervals, everyday vehicles</div>
+            </div>
+            <div class="tier-spec">
+              <div class="tier-label">What It Does</div>
+              <div class="tier-value">A reliable disposable filter that keeps debris out of your engine at an accessible price point. Straightforward and effective.</div>
+            </div>
+            <a href="contact.html" class="tier-cta">Schedule This Service</a>
+          </div>
+
+          <div class="tier-card featured">
+            <div class="tier-badge">Most Popular</div>
+            <div class="tier-name">Frontier</div>
+            <div class="tier-price"><sup>$</sup>30.00<span style="font-size:1.1rem;font-weight:600;color:rgba(255,255,255,0.40)">+</span></div>
+            <div class="tier-price-note">Parts + installation</div>
+            <div class="tier-subtext">"A step up in filtration without breaking the bank."</div>
+            <div class="tier-spec">
+              <div class="tier-label">Best For</div>
+              <div class="tier-value">Drivers who want better filtration and OEM-grade quality</div>
+            </div>
+            <div class="tier-spec">
+              <div class="tier-label">What It Does</div>
+              <div class="tier-value">An OEM-quality disposable filter offering improved filtration efficiency over the Trail tier. The same standard as factory-installed filters.</div>
+            </div>
+            <a href="contact.html" class="tier-cta">Schedule This Service</a>
+          </div>
+
+          <div class="tier-card">
+            <div class="tier-name">Summit</div>
+            <div class="tier-price"><sup>$</sup>86.25<span style="font-size:1.1rem;font-weight:600;color:var(--muted)">+</span></div>
+            <div class="tier-price-note">Parts + installation &middot; washable and reusable</div>
+            <div class="tier-subtext">"Buy it once, wash it, never buy another one."</div>
+            <div class="tier-spec">
+              <div class="tier-label">Best For</div>
+              <div class="tier-value">Long-term owners who want to eliminate recurring filter costs</div>
+            </div>
+            <div class="tier-spec">
+              <div class="tier-label">What It Does</div>
+              <div class="tier-value">A washable high-flow reusable filter that cleans and reinstalls every 50k miles. Pays for itself after two replacement cycles and improves airflow.</div>
+            </div>
+            <a href="contact.html" class="tier-cta">Schedule This Service</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- WIPER BLADES -->
+      <div id="section-wipers" class="pricing-service-section" style="display:none">
+        <div class="pricing-grid">
+
+          <div class="tier-card">
+            <div class="tier-name">Trail</div>
+            <div class="tier-price"><sup>$</sup>30.42<span style="font-size:1.1rem;font-weight:600;color:var(--muted)">+</span></div>
+            <div class="tier-price-note">Per pair &middot; front wipers</div>
+            <div class="tier-subtext">"They need to work. These will."</div>
+            <div class="tier-spec">
+              <div class="tier-label">Best For</div>
+              <div class="tier-value">Standard replacement, budget-conscious drivers</div>
+            </div>
+            <div class="tier-spec">
+              <div class="tier-label">What It Does</div>
+              <div class="tier-value">Reliable traditional bracket wipers that clear your windshield effectively without a premium price tag.</div>
+            </div>
+            <a href="contact.html" class="tier-cta">Schedule This Service</a>
+          </div>
+
+          <div class="tier-card featured">
+            <div class="tier-badge">Most Popular</div>
+            <div class="tier-name">Frontier</div>
+            <div class="tier-price"><sup>$</sup>51.67<span style="font-size:1.1rem;font-weight:600;color:rgba(255,255,255,0.40)">+</span></div>
+            <div class="tier-price-note">Per pair &middot; front wipers</div>
+            <div class="tier-subtext">"Better performance, especially in Idaho winters."</div>
+            <div class="tier-spec">
+              <div class="tier-label">Best For</div>
+              <div class="tier-value">Year-round drivers who deal with snow, rain, and ice</div>
+            </div>
+            <div class="tier-spec">
+              <div class="tier-label">What It Does</div>
+              <div class="tier-value">Beam-style wipers with no bracket means no snow buildup, uniform pressure across the blade, and a notably cleaner wipe in all conditions.</div>
+            </div>
+            <a href="contact.html" class="tier-cta">Schedule This Service</a>
+          </div>
+
+          <div class="tier-card">
+            <div class="tier-name">Summit</div>
+            <div class="tier-price"><sup>$</sup>76.67<span style="font-size:1.1rem;font-weight:600;color:var(--muted)">+</span></div>
+            <div class="tier-price-note">Per pair &middot; front wipers</div>
+            <div class="tier-subtext">"The clearest view possible, every time."</div>
+            <div class="tier-spec">
+              <div class="tier-label">Best For</div>
+              <div class="tier-value">Drivers who prioritize visibility and long wiper life</div>
+            </div>
+            <div class="tier-spec">
+              <div class="tier-label">What It Does</div>
+              <div class="tier-value">An aerodynamic premium beam wiper with a high-grade rubber compound that lasts longer and performs cleaner across all weather conditions.</div>
+            </div>
+            <a href="contact.html" class="tier-cta">Schedule This Service</a>
+          </div>
+
+        </div>
+        <div class="pricing-disclaimer">
+          Pricing is per pair of front wipers. Rear wiper replacement is available at an additional charge where applicable.
+        </div>
+      </div>
+
+      <!-- BATTERY REPLACEMENT -->
+      <div id="section-battery" class="pricing-service-section" style="display:none">
+        <div class="pricing-grid">
+
+          <div class="tier-card">
+            <div class="tier-name">Economy</div>
+            <div class="tier-price"><sup>$</sup>121.67<span style="font-size:1.1rem;font-weight:600;color:var(--muted)">+</span></div>
+            <div class="tier-price-note">Parts + installation &middot; ~40 min service</div>
+            <div class="tier-subtext">"Solid, affordable, gets the job done."</div>
+            <div class="tier-spec">
+              <div class="tier-label">Best For</div>
+              <div class="tier-value">Standard vehicles, budget-conscious replacement</div>
+            </div>
+            <div class="tier-spec">
+              <div class="tier-label">What It Does</div>
+              <div class="tier-value">A reliable starting battery with solid warranty coverage. Dependable power for everyday driving at an accessible price.</div>
+            </div>
+            <a href="contact.html" class="tier-cta">Schedule This Service</a>
+          </div>
+
+          <div class="tier-card featured">
+            <div class="tier-badge">Most Popular</div>
+            <div class="tier-name">Mid</div>
+            <div class="tier-price"><sup>$</sup>165.42<span style="font-size:1.1rem;font-weight:600;color:rgba(255,255,255,0.40)">+</span></div>
+            <div class="tier-price-note">Parts + installation &middot; ~40 min service</div>
+            <div class="tier-subtext">"A trusted name, strong performance, great longevity."</div>
+            <div class="tier-spec">
+              <div class="tier-label">Best For</div>
+              <div class="tier-value">Most vehicles, drivers who want a proven performer</div>
+            </div>
+            <div class="tier-spec">
+              <div class="tier-label">What It Does</div>
+              <div class="tier-value">A top-tier conventional battery with excellent cold cranking amps and strong longevity. One of the most trusted names in the industry.</div>
+            </div>
+            <a href="contact.html" class="tier-cta">Schedule This Service</a>
+          </div>
+
+          <div class="tier-card">
+            <div class="tier-name">Premium</div>
+            <div class="tier-price"><sup>$</sup>221.67<span style="font-size:1.1rem;font-weight:600;color:var(--muted)">+</span></div>
+            <div class="tier-price-note">Parts + installation &middot; ~40 min service</div>
+            <div class="tier-subtext">"Maximum power, maximum life, maximum reliability."</div>
+            <div class="tier-spec">
+              <div class="tier-label">Best For</div>
+              <div class="tier-value">Modern electronics-heavy vehicles, start-stop systems, extreme climates</div>
+            </div>
+            <div class="tier-spec">
+              <div class="tier-label">What It Does</div>
+              <div class="tier-value">An AGM battery that handles deep cycling, charges faster, and lasts significantly longer than conventional batteries. Built for demanding modern vehicles.</div>
+            </div>
+            <a href="contact.html" class="tier-cta">Schedule This Service</a>
+          </div>
+
+        </div>
+        <div class="pricing-disclaimer">
+          Battery pricing includes testing, removal, installation, and terminal cleaning. Final price may vary based on vehicle accessibility and battery hold-down requirements.
+        </div>
+      </div>
+
+      <!-- FLUID TOP-OFFS -->
+      <div id="section-fluids" class="pricing-service-section" style="display:none">
+        <div class="pricing-grid single-service">
+          <div class="tier-card">
+            <div class="tier-name">Fluid Top-Offs</div>
+            <div class="tier-price-note" style="margin-top:8px;">Per fluid &middot; labor included</div>
+            <div class="tier-subtext">"Keep everything where it should be."</div>
+            <table class="fluid-table">
+              <thead>
+                <tr><th>Fluid</th><th>Price</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Washer Fluid</td><td>$9.17</td></tr>
+                <tr><td>Power Steering</td><td>$13.55</td></tr>
+                <tr><td>Brake Fluid</td><td>$13.55</td></tr>
+                <tr><td>Coolant</td><td>$20.00</td></tr>
+                <tr><td>Transmission ATF</td><td>$20.00</td></tr>
+              </tbody>
+            </table>
+            <a href="contact.html" class="tier-cta" style="margin-top:24px;">Schedule This Service</a>
+          </div>
+        </div>
+        <div class="pricing-disclaimer">
+          Prices are per fluid. Multiple fluids may be topped off in a single appointment. Not all vehicles use every fluid listed.
+        </div>
+      </div>
+
+      <!-- MULTI-POINT INSPECTION -->
+      <div id="section-inspection" class="pricing-service-section" style="display:none">
+        <div class="pricing-grid single-service">
+          <div class="tier-card">
+            <div class="tier-name">Multi-Point Inspection</div>
+            <div class="tier-price"><sup>$</sup>50</div>
+            <div class="tier-price-note">Performed by a Trail Guide &middot; ~45 min</div>
+            <div class="tier-subtext">"Know exactly where your vehicle stands."</div>
+            <div class="tier-spec">
+              <div class="tier-label">Best For</div>
+              <div class="tier-value">Pre-purchase checks, peace of mind, vehicles with unknown service history</div>
+            </div>
+            <div class="tier-spec">
+              <div class="tier-label">What It Does</div>
+              <div class="tier-value">A thorough check of brakes, tires, fluids, belts, lights, and other key systems. Our Trail Guide walks you through everything they find.</div>
+            </div>
+            <a href="contact.html" class="tier-cta">Schedule an Inspection</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="pricing-cta-banner">
+    <div class="container">
+      <span class="section-tag">Save More</span>
+      <h2>Bundle and Save</h2>
+      <p>Combine services for a discount. View our current deals and the Pioneer Pass loyalty program.</p>
+      <a href="deals.html" class="btn btn-primary" style="margin-right:12px;">View Deals</a>
+      <a href="contact.html" class="btn btn-outline">Schedule Now</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-logo">
+        <img src="assets/logo_bg.png" alt="Pioneer Oil">
+      </div>
+      <p>Pioneer Oil · Mobile Oil Change Service</p>
+      <nav class="footer-nav">
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="deals.html">Deals</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="careers.html">Careers</a>
+      </nav>
+      <p class="footer-copy">&copy; 2025 Pioneer Oil. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('navToggle').addEventListener('click', () =>
+      document.getElementById('navLinks').classList.toggle('open')
+    );
+    function showService(val) {
+      document.querySelectorAll('.pricing-service-section').forEach(s => s.style.display = 'none');
+      document.getElementById('section-' + val).style.display = '';
+    }
+    document.getElementById('service-select').addEventListener('change', function () {
+      showService(this.value);
+    });
+    const svc = new URLSearchParams(window.location.search).get('service');
+    if (svc) {
+      const sel = document.getElementById('service-select');
+      if ([...sel.options].some(o => o.value === svc)) {
+        sel.value = svc;
+        showService(svc);
+      }
+    }
+  </script>
+
+</body>
+</html>
