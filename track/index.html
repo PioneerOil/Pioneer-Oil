@@ -152,11 +152,19 @@
 
     // ── Status config ────────────────────────────────────────
     const statusConfig = {
-      'Pending':   { color: '#E8A020', label: 'Pending Review' },
-      'Confirmed': { color: '#3b82f6', label: 'Confirmed' },
-      'Scheduled': { color: '#8b5cf6', label: 'Appointment Scheduled' },
-      'Completed': { color: '#22c55e', label: 'Completed' },
-      'Cancelled': { color: '#ef4444', label: 'Cancelled' },
+      'Pending':   { color: '#E8A020', label: 'Request Received' },
+      'Confirmed': { color: '#3b82f6', label: 'Your Pioneer Is Confirmed' },
+      'Scheduled': { color: '#8b5cf6', label: 'Your Pioneer Is On The Way' },
+      'Completed': { color: '#22c55e', label: 'Trail Complete' },
+      'Cancelled': { color: '#ef4444', label: 'Run Cancelled' },
+    };
+
+    const statusMessages = {
+      'Pending':   "Your wagon has been spotted on the horizon. We are reviewing your request and will reach out shortly to confirm your appointment and final price.",
+      'Confirmed': "Your Pioneer has been assigned and your appointment is confirmed. We will reach out with your exact arrival window.",
+      'Scheduled': "Your Pioneer is on their way. They will arrive at your location at the confirmed time. Sit tight.",
+      'Completed': "Trail blazed. Thanks for riding with Pioneer Oil. We hope to see you next time.",
+      'Cancelled': "This run has been cancelled. If you would like to reschedule, head back to our scheduling page.",
     };
 
     // ── Pre-fill from URL param ──────────────────────────────
@@ -203,7 +211,11 @@
         document.getElementById('track-status-dot').style.background = cfg.color;
         document.getElementById('track-status-label').textContent = cfg.label;
         document.getElementById('track-status-label').style.color = cfg.color;
-        document.getElementById('track-status-message').textContent = data.status_message || '';
+        // Use pioneer-themed message if no custom message set in Supabase
+        const msg = data.status_message && data.status_message !== 'We have received your request and will be in touch shortly.'
+          ? data.status_message
+          : (statusMessages[data.status] || data.status_message || '');
+        document.getElementById('track-status-message').textContent = msg;
 
         // Populate details
         document.getElementById('detail-ref').textContent      = data.reference;
