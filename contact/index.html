@@ -183,19 +183,55 @@
               <input type="number" id="mileage" name="mileage" placeholder="e.g. 85000" min="0">
             </div>
 
-            <!-- Service tier -->
+            <!-- Service selector -->
             <div class="form-group">
-              <label for="tier">Service Tier <span style="color:var(--gold)">*</span></label>
-              <select id="tier" name="service_tier" required data-fs-field>
-                <option value="">Select a tier</option>
-                <option value="Trail Grade">Trail Grade — From $40.95</option>
-                <option value="Frontier Grade">Frontier Grade — From $50.50</option>
-                <option value="Summit Grade">Summit Grade — From $67.96</option>
-                <option value="Pinnacle Grade">Pinnacle Grade — From $112.07</option>
-                <option value="Not Sure">Not sure, help me choose</option>
+              <label for="service-type">Service <span style="color:var(--gold)">*</span></label>
+              <select id="service-type" name="service_type" required data-fs-field>
+                <option value="">Select a service</option>
+                <optgroup label="Oil Change">
+                  <option value="Oil Change — Trail Grade">Trail Grade — from $40.95</option>
+                  <option value="Oil Change — Frontier Grade">Frontier Grade — from $50.50</option>
+                  <option value="Oil Change — Summit Grade">Summit Grade — from $67.96</option>
+                  <option value="Oil Change — Pinnacle Grade">Pinnacle Grade — from $112.07</option>
+                  <option value="Oil Change — Grade TBD">Not sure which grade</option>
+                </optgroup>
+                <optgroup label="Other Services">
+                  <option value="Tire Rotation">Tire Rotation — $25</option>
+                  <option value="Engine Air Filter">Engine Air Filter — from $22.50</option>
+                  <option value="Cabin Air Filter">Cabin Air Filter — from $25</option>
+                  <option value="Wiper Blade Replacement">Wiper Blade Replacement — from $30.42/pair</option>
+                  <option value="Battery Replacement">Battery Replacement — from $121.67</option>
+                  <option value="Fluid Top-Off">Fluid Top-Off(s)</option>
+                  <option value="Multi-Point Inspection">Multi-Point Inspection — $50</option>
+                  <option value="Bundle — Multiple Services">Bundle — Multiple Services</option>
+                </optgroup>
               </select>
-              <span class="fs-field-error" data-fs-error="service_tier"></span>
+              <span class="fs-field-error" data-fs-error="service_type"></span>
             </div>
+
+            <!-- Quart estimator (oil changes only) -->
+            <div id="quart-section" style="display:none">
+              <div class="quart-estimator-box">
+                <label class="quart-box-label">How many quarts does your vehicle take?</label>
+                <div class="quart-control-row">
+                  <button type="button" class="quart-adj" id="quart-minus">−</button>
+                  <div class="quart-display">
+                    <span id="quart-count">5</span>
+                    <span class="quart-unit">quarts</span>
+                  </div>
+                  <button type="button" class="quart-adj" id="quart-plus">+</button>
+                </div>
+                <p class="quart-note">Most cars take 5 quarts. Check your owner's manual or the oil cap under the hood. If unsure, leave it at 5 and we will confirm when we reach out.</p>
+                <div class="estimate-display">
+                  <div class="estimate-row">
+                    <span>Estimated starting price</span>
+                    <span class="estimate-price" id="estimate-price">—</span>
+                  </div>
+                  <div class="estimate-sub">Confirmed before we begin. May vary by viscosity.</div>
+                </div>
+              </div>
+            </div>
+            <input type="hidden" name="quarts" id="quarts-hidden" value="5">
 
             <!-- Location -->
             <div class="form-group">
@@ -273,14 +309,56 @@
     document.getElementById('service-ref-display').textContent = ref;
     document.getElementById('service-ref-hidden').value = ref;
 
-    // ── Pre-select tier from URL param (?tier=Summit) ────────
-    const tierParam = new URLSearchParams(window.location.search).get('tier');
-    if (tierParam) {
-      const sel = document.getElementById('tier');
+    // ── Pre-select service from URL param ────────────────────
+    // Supports ?service=, ?tier= (legacy from pricing page links)
+    const params = new URLSearchParams(window.location.search);
+    const svcParam = params.get('service') || params.get('tier');
+    if (svcParam) {
+      const sel = document.getElementById('service-type');
       for (const opt of sel.options) {
-        if (opt.value === tierParam) { opt.selected = true; break; }
+        if (opt.value === svcParam || opt.value.toLowerCase().includes(svcParam.toLowerCase())) {
+          opt.selected = true;
+          sel.dispatchEvent(new Event('change'));
+          break;
+        }
       }
     }
+
+    // ── Service selector + quart estimator ──────────────────
+    const oilTiers = {
+      'Oil Change — Trail Grade':    { base: 40.95,  extraPerQt: 6.99 },
+      'Oil Change — Frontier Grade': { base: 50.50,  extraPerQt: 8.50 },
+      'Oil Change — Summit Grade':   { base: 67.96,  extraPerQt: 10.00 },
+      'Oil Change — Pinnacle Grade': { base: 112.07, extraPerQt: 18.38 },
+    };
+    let quarts = 5;
+
+    function updateEstimate() {
+      const svc = document.getElementById('service-type').value;
+      const tier = oilTiers[svc];
+      if (!tier) { document.getElementById('estimate-price').textContent = '—'; return; }
+      const price = quarts <= 5 ? tier.base : tier.base + (quarts - 5) * tier.extraPerQt;
+      document.getElementById('estimate-price').textContent = '$' + price.toFixed(2);
+    }
+
+    function updateQuartsDisplay() {
+      document.getElementById('quart-count').textContent = quarts;
+      document.getElementById('quarts-hidden').value = quarts;
+      updateEstimate();
+    }
+
+    document.getElementById('service-type').addEventListener('change', function () {
+      const isOil = this.value.startsWith('Oil Change');
+      document.getElementById('quart-section').style.display = isOil ? '' : 'none';
+      updateEstimate();
+    });
+
+    document.getElementById('quart-minus').addEventListener('click', () => {
+      if (quarts > 1) { quarts--; updateQuartsDisplay(); }
+    });
+    document.getElementById('quart-plus').addEventListener('click', () => {
+      if (quarts < 12) { quarts++; updateQuartsDisplay(); }
+    });
 
     // ── Contact method toggle ────────────────────────────────
     document.querySelectorAll('.ctoggle').forEach(btn => {
@@ -402,7 +480,7 @@
             name: fd.get('name') || 'Unknown',
             contact: fd.get('email') || fd.get('phone') || 'Not provided',
             vehicle: vehicle,
-            service_tier: fd.get('service_tier') || 'Not specified',
+            service_tier: (fd.get('service_type') || 'Not specified') + (parseInt(fd.get('quarts') || 5) > 5 ? ` — ${fd.get('quarts')} quarts` : ''),
             service_location: fd.get('service_location') || 'Not specified'
           }]).then(({ error }) => {
             if (error) console.error('Supabase insert error:', error);
