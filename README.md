@@ -1,120 +1,84 @@
-# Pioneer Oil — Website Setup Guide
+# Pioneer Oil
 
-## File Structure
+**Mobile vehicle services delivered to your door.** No shop. No waiting room. We come to you.
 
-Put your files in this layout:
-
-```
-pioneer-oil/
-├── index.html        ← Home page
-├── pricing.html      ← Pricing tiers
-├── contact.html      ← Scheduling form
-├── style.css         ← Shared styles
-└── assets/
-    └── logo.png      ← Your logo file (rename yours to exactly this)
-```
+Pioneer Oil serves Rexburg, Idaho and surrounding areas with just-in-time oil changes and vehicle maintenance. A certified Pioneer shows up at your location — apartment lot, campus, workplace, wherever works — and handles the service while you keep on with your day.
 
 ---
 
-## Step 1 — Add Your Logo
+## The Brand
 
-1. Rename your logo file to `logo.png`
-2. Create a folder called `assets` inside your project folder
-3. Put `logo.png` inside `assets/`
-
-> **Tip:** If you can get a version of your logo with a **transparent background** (a PNG with no white box), it will look cleaner on the dark navy navigation bar and footer. Ask your logo designer or use a free tool like **remove.bg** to strip the background.
+Pioneer Oil is built on the LDS pioneer heritage of the American West. Those who crossed the plains showed up, did honest work, and took care of the people around them. That spirit drives every service call.
 
 ---
 
-## Step 2 — Set Up Formspree (Free Contact Form)
+## Services
 
-Formspree handles form submissions for free static sites (free tier: 50 submissions/month).
+| Service | Starting Price |
+|---|---|
+| Oil Change — Trail Grade | $40.95 |
+| Oil Change — Frontier Grade | $50.50 |
+| Oil Change — Summit Grade | $67.96 |
+| Oil Change — Pinnacle Grade | $112.07 |
+| Tire Rotation | $25.00 |
+| Engine Air Filter | $22.50 |
+| Cabin Air Filter | $25.00 |
+| Wiper Blade Replacement | $30.42 per pair |
+| Battery Replacement | $121.67 |
+| Fluid Top-Offs | $9.17 and up |
+| Multi-Point Inspection | $50.00 |
 
-1. Go to **https://formspree.io** and create a free account
-2. Click **"New Form"** and give it a name like "Pioneer Oil Scheduling"
-3. Copy your **Form ID** (looks like `xabc1234`)
-4. Open `contact.html` and find this line near the top of the `<form>` tag:
-
-   ```html
-   action="https://formspree.io/f/YOUR_FORM_ID"
-   ```
-
-5. Replace `YOUR_FORM_ID` with your actual ID, for example:
-
-   ```html
-   action="https://formspree.io/f/xabc1234"
-   ```
-
-6. Formspree will email you every time someone fills out the form.
+All prices are starting prices and are confirmed before any work begins. Vehicles requiring more than 5 quarts receive a per-quart price estimate at the time of scheduling.
 
 ---
 
-## Step 3 — Push to GitHub
+## Oil Change Grades
 
-1. Go to **https://github.com** and create a free account (if you don't have one)
-2. Click **"New Repository"**
-3. Name it exactly: `pioneer-oil` (or any name you want)
-4. Leave it **Public**
-5. Click **"Create Repository"**
+Pioneer Oil uses proprietary grade names rather than brand names to protect supplier relationships and prevent undercutting. Grades are priced based on oil quality, service interval, and engine requirements.
 
-Then upload your files. The easiest way if you're not using Git:
-
-- On your new repo page, click **"uploading an existing file"**
-- Drag all your files into the uploader:
-  - `index.html`
-  - `pricing.html`
-  - `contact.html`
-  - `style.css`
-  - The `assets/` folder with `logo.png` inside it
-- Click **"Commit changes"**
+| Grade | Type | Extra Quart Rate |
+|---|---|---|
+| Trail | Conventional | $6.99/qt |
+| Frontier | High-mileage blend | $8.50/qt |
+| Summit | Full synthetic | $10.00/qt |
+| Pinnacle | Premium synthetic | $18.38/qt |
 
 ---
 
-## Step 4 — Enable GitHub Pages
+## Team Structure
 
-1. In your repo, click **"Settings"** (top tab)
-2. Scroll down to **"Pages"** in the left sidebar
-3. Under **"Branch"**, select `main` and click **"Save"**
-4. Wait 1–2 minutes, then your site will be live at:
-
-   ```
-   https://YOUR-GITHUB-USERNAME.github.io/pioneer-oil/
-   ```
-
-That's it! Share that link wherever you'd like.
-
----
-
-## Step 5 — When You Get a Real Domain
-
-When you're ready to pay for a domain (e.g., pioneeroil.com):
-
-1. Buy the domain from any registrar (Namecheap, Porkbun, Google Domains)
-2. In your repo Settings → Pages, enter your custom domain
-3. At your registrar, add a CNAME record pointing to `YOUR-USERNAME.github.io`
-
-GitHub has a full guide at: https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site
+| Title | Role |
+|---|---|
+| Pioneer | Mobile road technician |
+| Trail Guide | Shop technician and inspector |
+| Trail Coach | Team trainer and feedback lead |
+| Wagon Master | Operations and location lead |
+| Pathfinder | New market expansion |
+| Quartermaster | Supply and inventory |
+| Ledger Keeper | Accounting |
 
 ---
 
-## Making Updates
+## Pioneer Pass
 
-To change prices, text, or anything else:
-
-- Go to your repo on GitHub
-- Click the file you want to edit
-- Click the pencil icon (Edit)
-- Make your changes and click **"Commit changes"**
-- The site updates in about 60 seconds
+Every 5 oil changes earns a free tire rotation. Customers reference their service numbers when scheduling their fifth change.
 
 ---
 
-## Quick Reference — What Each File Does
+## Bundles
 
-| File | Purpose |
-|------|---------|
-| `index.html` | Home page — hero, how it works, about, pricing preview |
-| `pricing.html` | Full pricing tier cards with details |
-| `contact.html` | Scheduling form with Formspree integration |
-| `style.css` | All styles shared across every page |
-| `assets/logo.png` | Your logo, used in nav and footer |
+| Bundle | Services | Savings |
+|---|---|---|
+| Road Ready | Oil change + Tire rotation | $5 off |
+| Trail Ready | Oil change + Tire rotation + Wiper blades | $10 off |
+| Pioneer Complete | Oil change + Tire rotation + Air filter + 2 fluid top-offs | $20 off |
+
+---
+
+## Tech Stack
+
+- **Hosting** — GitHub Pages (static)
+- **Scheduling** — Formspree (email notifications to team)
+- **Submission Tracking** — Supabase (customer-facing status page)
+- **VIN Lookup** — NHTSA free public API
+- **Careers** — Formspree with client-side applicant number generation
