@@ -676,8 +676,8 @@ footer a:hover { text-decoration: underline; }
   width: 100%;
   display: block;
   transform: scale(1.1);
-  transform-origin: 50% 42%;
-  margin-bottom: -10%;
+  transform-origin: 45% 45%;
+  margin-bottom: -12%;
 }
 .about-logo-hero p {
   color: var(--muted);
