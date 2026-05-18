@@ -673,10 +673,10 @@ footer a:hover { text-decoration: underline; }
   line-height: 0;
 }
 .about-hero-crop img {
-  width: 116%;
-  margin-left: -15%;
-  margin-top: -8%;
-  margin-bottom: -12%;
+  width: 112%;
+  margin-left: -6%;
+  margin-top: -6%;
+  margin-bottom: -11%;
   display: block;
 }
 .about-logo-hero p {
