@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="../assets/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Track your Pioneer Oil service request.">
+  <title>Track Your Request – Pioneer Oil</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <nav>
+    <div class="container nav-inner">
+      <a href="../" class="nav-logo">
+        <img src="../assets/logo_bg.png" alt="Pioneer Oil">
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../">Home</a></li>
+        <li><a href="../about/">About</a></li>
+        <li><a href="../services/">Services</a></li>
+        <li><a href="../pricing/">Pricing</a></li>
+        <li><a href="../deals/">Deals</a></li>
+        <li><a href="../contact/" class="nav-cta">Schedule Now</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <div class="container">
+      <span class="section-tag">Your Request</span>
+      <h1>Track Your Submission</h1>
+      <p>Enter your service reference number to see the current status of your request.</p>
+    </div>
+  </header>
+
+  <section class="track-section">
+    <div class="container">
+      <div class="track-inner">
+
+        <div class="track-lookup-card">
+          <label for="ref-input" class="track-label">Service Reference Number</label>
+          <div class="track-input-row">
+            <input
+              type="text"
+              id="ref-input"
+              class="track-input"
+              placeholder="e.g. PO-XXXXXXXX"
+              maxlength="12"
+              autocomplete="off"
+              style="text-transform:uppercase"
+            >
+            <button class="btn btn-primary track-btn" onclick="lookupSubmission()">Check Status</button>
+          </div>
+          <p class="track-hint">Your reference number was shown when you submitted your request. It starts with <strong>PO-</strong>.</p>
+        </div>
+
+        <!-- Result card (hidden until lookup) -->
+        <div id="track-result" class="track-result" style="display:none">
+
+          <div class="track-status-card" id="track-status-card">
+            <div class="track-status-header">
+              <div class="track-status-dot" id="track-status-dot"></div>
+              <div class="track-status-label" id="track-status-label">Checking...</div>
+            </div>
+            <div class="track-status-message" id="track-status-message"></div>
+          </div>
+
+          <div class="track-details-card">
+            <div class="track-detail-row">
+              <span class="track-detail-label">Reference</span>
+              <span class="track-detail-val" id="detail-ref"></span>
+            </div>
+            <div class="track-detail-row">
+              <span class="track-detail-label">Service</span>
+              <span class="track-detail-val" id="detail-service"></span>
+            </div>
+            <div class="track-detail-row">
+              <span class="track-detail-label">Vehicle</span>
+              <span class="track-detail-val" id="detail-vehicle"></span>
+            </div>
+            <div class="track-detail-row">
+              <span class="track-detail-label">Location</span>
+              <span class="track-detail-val" id="detail-location"></span>
+            </div>
+            <div class="track-detail-row">
+              <span class="track-detail-label">Submitted</span>
+              <span class="track-detail-val" id="detail-date"></span>
+            </div>
+          </div>
+
+          <p class="track-contact-note">
+            Questions about your request? Reach out and mention your reference number.
+          </p>
+
+        </div>
+
+        <!-- Not found message -->
+        <div id="track-not-found" class="track-not-found" style="display:none">
+          <div class="status-result not-found">
+            We could not find a submission with that reference number. Double-check the number and try again. Reference numbers start with <strong>PO-</strong> and are case-insensitive.
+          </div>
+        </div>
+
+        <!-- Error message -->
+        <div id="track-error" class="track-not-found" style="display:none">
+          <div class="status-result not-found">
+            Something went wrong while looking up your request. Check your connection and try again.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-logo">
+        <img src="../assets/logo_bg.png" alt="Pioneer Oil">
+      </div>
+      <p>Pioneer Oil · Mobile Oil Change Service</p>
+      <nav class="footer-nav">
+        <a href="../about/">About</a>
+        <a href="../services/">Services</a>
+        <a href="../pricing/">Pricing</a>
+        <a href="../deals/">Deals</a>
+        <a href="../contact/">Contact Us</a>
+        <a href="../careers/">Careers</a>
+      </nav>
+      <p class="footer-copy">&copy; 2025 Pioneer Oil. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script>
+    // ── Nav ──────────────────────────────────────────────────
+    document.getElementById('navToggle').addEventListener('click', () =>
+      document.getElementById('navLinks').classList.toggle('open')
+    );
+
+    // ── Supabase client ──────────────────────────────────────
+    const { createClient } = supabase;
+    const db = createClient(
+      'https://yllhhngrvujydaceqrar.supabase.co',
+      'sb_publishable_mZ6X3tuRGoe3tb8DnVrF3Q_-xrrnvV_'
+    );
+
+    // ── Status config ────────────────────────────────────────
+    const statusConfig = {
+      'Pending':   { color: '#E8A020', label: 'Pending Review' },
+      'Confirmed': { color: '#3b82f6', label: 'Confirmed' },
+      'Scheduled': { color: '#8b5cf6', label: 'Appointment Scheduled' },
+      'Completed': { color: '#22c55e', label: 'Completed' },
+      'Cancelled': { color: '#ef4444', label: 'Cancelled' },
+    };
+
+    // ── Pre-fill from URL param ──────────────────────────────
+    const urlRef = new URLSearchParams(window.location.search).get('ref');
+    if (urlRef) {
+      document.getElementById('ref-input').value = urlRef.toUpperCase();
+      lookupSubmission();
+    }
+
+    // ── Allow Enter key ──────────────────────────────────────
+    document.getElementById('ref-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') lookupSubmission();
+    });
+
+    // ── Lookup function ──────────────────────────────────────
+    async function lookupSubmission() {
+      const raw = document.getElementById('ref-input').value.trim().toUpperCase();
+      const result  = document.getElementById('track-result');
+      const notFound = document.getElementById('track-not-found');
+      const errDiv  = document.getElementById('track-error');
+
+      result.style.display   = 'none';
+      notFound.style.display = 'none';
+      errDiv.style.display   = 'none';
+
+      if (!raw) return;
+
+      try {
+        const { data, error } = await db
+          .from('submissions')
+          .select('reference, status, status_message, service_tier, vehicle, service_location, created_at')
+          .eq('reference', raw)
+          .maybeSingle();
+
+        if (error) throw error;
+
+        if (!data) {
+          notFound.style.display = '';
+          return;
+        }
+
+        // Populate status card
+        const cfg = statusConfig[data.status] || { color: '#6B7A96', label: data.status };
+        document.getElementById('track-status-dot').style.background = cfg.color;
+        document.getElementById('track-status-label').textContent = cfg.label;
+        document.getElementById('track-status-label').style.color = cfg.color;
+        document.getElementById('track-status-message').textContent = data.status_message || '';
+
+        // Populate details
+        document.getElementById('detail-ref').textContent      = data.reference;
+        document.getElementById('detail-service').textContent  = data.service_tier  || 'Not specified';
+        document.getElementById('detail-vehicle').textContent  = data.vehicle       || 'Not specified';
+        document.getElementById('detail-location').textContent = data.service_location || 'Not specified';
+        document.getElementById('detail-date').textContent     = data.created_at
+          ? new Date(data.created_at).toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' })
+          : 'Unknown';
+
+        result.style.display = '';
+
+      } catch (err) {
+        console.error(err);
+        errDiv.style.display = '';
+      }
+    }
+  </script>
+
+</body>
+</html>
