@@ -666,10 +666,10 @@ footer a:hover { text-decoration: underline; }
   clip-path: ellipse(55% 100% at 50% 100%);
 }
 .about-hero-img {
-  width: 280px;
-  max-width: 80%;
+  width: 360px;
+  max-width: 85%;
   border-radius: 0;
-  margin-bottom: 8px;
+  margin-bottom: 2px;
 }
 .about-logo-hero p {
   color: var(--muted);
