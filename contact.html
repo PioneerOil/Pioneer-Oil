@@ -392,6 +392,20 @@
         btnSub.disabled = false;
       }
     });
+
+    function showSuccessAnimation(serviceRef) {
+      document.getElementById('anim-ref-display').textContent = serviceRef;
+      const overlay = document.getElementById('success-overlay');
+      overlay.classList.add('visible');
+      setTimeout(() => overlay.querySelector('.success-wagon-wheel').classList.add('spin'), 100);
+      setTimeout(() => overlay.querySelector('.success-check').classList.add('draw'), 600);
+      setTimeout(() => {
+        overlay.querySelector('.success-title').classList.add('fade-up');
+        overlay.querySelector('.success-message').classList.add('fade-up');
+        overlay.querySelector('.success-ref-box-anim').classList.add('fade-up');
+        overlay.querySelector('.success-btn').classList.add('fade-up');
+      }, 900);
+    }
   </script>
 
 
