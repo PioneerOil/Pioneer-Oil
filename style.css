@@ -673,11 +673,11 @@ footer a:hover { text-decoration: underline; }
   line-height: 0;
 }
 .about-hero-crop img {
-  width: 112%;
-  margin-left: -6%;
-  margin-top: -6%;
-  margin-bottom: -11%;
+  width: 100%;
   display: block;
+  transform: scale(1.1);
+  transform-origin: 50% 42%;
+  margin-bottom: -10%;
 }
 .about-logo-hero p {
   color: var(--muted);
