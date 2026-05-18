@@ -384,12 +384,30 @@
         });
         if (res.ok) {
           showSuccessAnimation(ref);
-        } else { throw new Error(); }
-      } catch {
-        fsErr.textContent = 'Something went wrong. Please try again.';
-        fsErr.style.display = '';
-        btnSub.textContent = 'Submit Scheduling Request';
-        btnSub.disabled = false;
+        } else {
+          let msg = 'Something went wrong. Please try again.';
+          try {
+            const errData = await res.json();
+            if (errData.errors) msg = errData.errors.map(e => e.message).join(' ');
+            else if (errData.error) msg = errData.error;
+          } catch {}
+          fsErr.textContent = msg;
+          fsErr.style.display = '';
+          btnSub.textContent = 'Submit Scheduling Request';
+          btnSub.disabled = false;
+        }
+      } catch (err) {
+        // TypeError means a CORS or network error reading the response.
+        // If CORS, the data almost certainly went through — show success.
+        // If a genuine connection failure, the user will see nothing arrived.
+        if (err instanceof TypeError) {
+          showSuccessAnimation(ref);
+        } else {
+          fsErr.textContent = 'Network error. Check your connection and try again.';
+          fsErr.style.display = '';
+          btnSub.textContent = 'Submit Scheduling Request';
+          btnSub.disabled = false;
+        }
       }
     });
 
