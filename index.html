@@ -15,16 +15,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-  <script>
-  (function() {
-    const audio = new Audio('https://pioneeroil.github.io/Pioneer-Oil/assets/joke.mp3');
-    audio.volume = 1.0;
-    audio.play().catch(() => {
-      // Browser blocked autoplay — plays on first click instead
-      document.addEventListener('click', () => audio.play(), { once: true });
-    });
-  })();
-</script>
 <body>
 
   <nav>
@@ -37,11 +27,11 @@
       </button>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="about/">About</a></li>
-        <li><a href="services/">Services</a></li>
-        <li><a href="pricing/">Pricing</a></li>
-        <li><a href="deals/">Deals</a></li>
-        <li><a href="contact/" class="nav-cta">Schedule Now</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="deals.html">Deals</a></li>
+        <li><a href="contact.html" class="nav-cta">Schedule Now</a></li>
       </ul>
     </div>
   </nav>
@@ -53,8 +43,8 @@
         <h1>Your Oil Change,<br><em>At Your Doorstep.</em></h1>
         <p>No shop. No waiting room. No surprises. We come to you at your apartment, your campus, or wherever is most convenient. Fresh oil, trusted brands, honest pricing.</p>
         <div class="hero-buttons">
-          <a href="contact/" class="btn btn-primary">Schedule My Change</a>
-          <a href="pricing/" class="btn btn-outline">See Pricing</a>
+          <a href="contact.html" class="btn btn-primary">Schedule My Change</a>
+          <a href="pricing.html" class="btn btn-outline">See Pricing</a>
         </div>
       </div>
     </div>
@@ -68,30 +58,30 @@
         <p>All listed prices are starting prices and may vary based on your vehicle's needs.</p>
       </div>
       <div class="tier-preview-grid">
-        <a href="pricing/" class="tier-preview-card">
+        <a href="pricing.html" class="tier-preview-card">
           <div class="tp-name">Trail Grade</div>
           <div class="tp-price">From $40.95</div>
           <div class="tp-oil">Everyday protection</div>
         </a>
-        <a href="pricing/" class="tier-preview-card featured">
+        <a href="pricing.html" class="tier-preview-card featured">
           <div class="tp-badge">Most Popular</div>
           <div class="tp-name">Frontier Grade</div>
           <div class="tp-price">From $50.50</div>
           <div class="tp-oil">High-mileage blend</div>
         </a>
-        <a href="pricing/" class="tier-preview-card">
+        <a href="pricing.html" class="tier-preview-card">
           <div class="tp-name">Summit Grade</div>
           <div class="tp-price">From $67.96</div>
           <div class="tp-oil">Full synthetic</div>
         </a>
-        <a href="pricing/" class="tier-preview-card">
+        <a href="pricing.html" class="tier-preview-card">
           <div class="tp-name">Pinnacle Grade</div>
           <div class="tp-price">From $112.07</div>
           <div class="tp-oil">Premium synthetic</div>
         </a>
       </div>
       <div style="text-align:center; margin-top:44px;">
-        <a href="services/" class="btn btn-primary">View All Services</a>
+        <a href="services.html" class="btn btn-primary">View All Services</a>
       </div>
     </div>
   </section>
@@ -103,11 +93,11 @@
       </div>
       <p>Pioneer Oil · Mobile Oil Change Service</p>
       <nav class="footer-nav">
-        <a href="about/">About</a>
-        <a href="services/">Services</a>
-        <a href="pricing/">Pricing</a>
-        <a href="contact/">Schedule Now</a>
-        <a href="careers/">Careers</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="contact.html">Schedule Now</a>
+        <a href="careers.html">Careers</a>
       </nav>
       <p class="footer-copy">&copy; 2025 Pioneer Oil. All rights reserved.</p>
     </div>
@@ -117,6 +107,18 @@
     const toggle = document.getElementById('navToggle');
     const links  = document.getElementById('navLinks');
     toggle.addEventListener('click', () => links.classList.toggle('open'));
+
+    // 🎵 joke audio
+    const joke = new Audio('assets/joke.mp3');
+    joke.volume = 1.0;
+    // Try immediately
+    joke.play().catch(() => {});
+    // Also fire on first click, scroll, or keypress in case browser blocked autoplay
+    const playJoke = () => { joke.play().catch(() => {}); };
+    document.addEventListener('click',     playJoke, { once: true });
+    document.addEventListener('scroll',    playJoke, { once: true });
+    document.addEventListener('keydown',   playJoke, { once: true });
+    document.addEventListener('touchstart',playJoke, { once: true });
   </script>
 
 </body>
