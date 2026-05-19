@@ -108,17 +108,26 @@
     const links  = document.getElementById('navLinks');
     toggle.addEventListener('click', () => links.classList.toggle('open'));
 
-    // 🎵 joke audio
+    // 🎵 joke audio — persists across interactions
     const joke = new Audio('assets/joke.mp3');
     joke.volume = 1.0;
-    // Try immediately
-    joke.play().catch(() => {});
-    // Also fire on first click, scroll, or keypress in case browser blocked autoplay
-    const playJoke = () => { joke.play().catch(() => {}); };
-    document.addEventListener('click',     playJoke, { once: true });
-    document.addEventListener('scroll',    playJoke, { once: true });
-    document.addEventListener('keydown',   playJoke, { once: true });
-    document.addEventListener('touchstart',playJoke, { once: true });
+
+    function startJoke() {
+      joke.play().then(() => {
+        // Successfully playing — remove all triggers so nothing restarts it
+        document.removeEventListener('click',      startJoke);
+        document.removeEventListener('scroll',     startJoke);
+        document.removeEventListener('keydown',    startJoke);
+        document.removeEventListener('touchstart', startJoke);
+      }).catch(() => {});
+    }
+
+    // Try immediately, fall back to first interaction
+    startJoke();
+    document.addEventListener('click',      startJoke);
+    document.addEventListener('scroll',     startJoke);
+    document.addEventListener('keydown',    startJoke);
+    document.addEventListener('touchstart', startJoke);
   </script>
 
 </body>
